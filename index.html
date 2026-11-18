@@ -53,10 +53,21 @@
   .album figure:nth-child(-n+2){grid-column:auto!important}
   .ornament .photo-hero{max-height:460px}
 }
+
+@media(max-width:720px){
+  .hero{min-height:auto;gap:24px;padding:36px clamp(16px,5vw,35px) 30px}
+  .hero h1{font-size:clamp(44px,12vw,80px);margin:24px 0 17px;line-height:.85}
+  .hero h1 em{margin-left:0}
+  .hero-copy>p:not(.eyebrow){margin:0 0 17px}
+  .hero .ornament.has-photo{width:min(100%,420px);padding:12px 10px 28px}
+  .hero .photo-hero{max-height:min(58svh,460px)}
+  .nav{flex-wrap:wrap;gap:12px;padding-block:14px}
+  .nav-links{flex-wrap:wrap;column-gap:15px}
+}
 </style></head>
 <body id="top"><nav class="nav" aria-label="Main navigation"><a class="brand" href="#top"><span>✦</span> Kanish</a><div class="nav-links"><a href="#letter">The letter</a><a href="#memories">Photos</a><a href="#films">Films</a><a href="#wishes">Wishes</a></div></nav>
 <main>
-<header class="hero"><div class="hero-copy"><p class="eyebrow"><time datetime="2026-11-18">18 November 2026</time> &nbsp; ✦ &nbsp; For you</p><h1>Happy <em>Princess Day.</em></h1><p>Some memories belong in a little world of their own. This one is yours.</p><a class="pill" href="#letter">Open your letter <span aria-hidden="true">↘</span></a></div><div class="ornament" aria-hidden="true"><div class="frame"></div><div class="orb"><span class="crown">♕</span></div><span class="spark s1">✦</span><span class="spark s2">✧</span><span class="spark s3">✦</span><span class="spark s4">✧</span><span class="orbit-label">The sky is yours</span></div></header>
+<header class="hero"><div class="hero-copy"><p class="eyebrow"><time datetime="2026-11-18">18 November 2026</time> &nbsp; ✦ &nbsp; For you</p><h1>Happy <em>Princess Day.</em></h1><p>Some memories belong in a little world of their own. This one is yours.</p><a class="pill" href="#letter">Open your letter <span aria-hidden="true">↘</span></a></div><div class="ornament has-photo" aria-hidden="true"><div class="frame"></div><img class="photo-hero" src="./media/photo-07.webp" alt="" fetchpriority="high" decoding="async"><span class="spark s1">✦</span><span class="spark s2">✧</span><span class="spark s3">✦</span><span class="spark s4">✧</span><span class="orbit-label">The sky is yours</span></div></header>
 <div class="ribbon">✧ &nbsp; A day to feel celebrated &nbsp; ✧</div>
 <section class="section note" id="letter"><div><p class="eyebrow">A letter for you</p><h2>Dear <em>Princess,</em></h2></div><div class="letter"><p>I hope today brings you the kind of happiness that sneaks up on you in the middle of an ordinary moment.</p><p>May there be a song you want to play twice, a reason to laugh until your cheeks hurt, and a moment just for yourself.</p><p>Happy Princess Day. I hope you feel celebrated today.</p></div></section>
 <section class="section featured" aria-labelledby="curtain"><div><p class="eyebrow">The curtain rises</p><h2 id="curtain">A moment <em>in motion.</em></h2><p>Take your time here. The screening room is open whenever you want to come back.</p><a class="pill" href="#films">Browse all 21 films <span aria-hidden="true">↘</span></a></div><video controls playsinline preload="none" poster="./media/film-12.webp" src="./media/film-12.mp4" aria-label="Opening film"></video></section>
@@ -111,16 +122,6 @@ function showPhoto(index) {
   image.src = item.src;
   image.alt = item.alt;
   lightbox.querySelector('output').textContent = item.caption;
-}
-if (photos.length) {
-  const ornament = document.querySelector('.ornament');
-  const hero = document.createElement('img');
-  hero.src = photos[0].src;
-  hero.alt = '';
-  hero.className = 'photo-hero';
-  hero.fetchPriority = 'high';
-  ornament.querySelector('.orb').replaceWith(hero);
-  ornament.classList.add('has-photo');
 }
 for (const [index, item] of photos.entries()) {
   const figure = document.createElement('figure');
