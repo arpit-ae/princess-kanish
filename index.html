@@ -176,7 +176,7 @@ body{background:#1b1120}
 <section class="section cinema" id="films"><div class="collection"><p class="eyebrow">The screening room</p><h2>Little films, <em>big feelings.</em></h2><p class="subtitle">Choose a scene and press play.</p><div class="screenings"></div><a class="pill more-link" href="#view-more">View more <span aria-hidden="true">↓</span></a></div></section>
 <section class="section cinema more-media" id="view-more" aria-labelledby="more-title">
   <div class="collection"><details>
-    <summary id="more-title">View more <span>4 photos · 9 short films</span></summary>
+    <summary id="more-title">View more <span>4 photos · 12 short films</span></summary>
     <h3>Photographs</h3><div class="more-photos"></div>
     <h3>Short films</h3><div class="screenings more-films"></div>
   </details></div>
@@ -221,7 +221,7 @@ const media = JSON.parse(document.getElementById('media-data').textContent);
 const photos = media.filter(item => item.type === 'photo');
 const films = media.filter(item => item.type === 'video');
 const lightbox = document.querySelector('.lightbox');
-const moreCaptions = new Set(["Photograph 05","Photograph 03","Photograph 02","Photograph 01","Short film 09","Short film 13","Short film 08","Short film 15","Short film 18","Short film 11","Short film 16","Short film 01","Short film 14"]);
+const moreCaptions = new Set(["Photograph 05","Photograph 03","Photograph 02","Photograph 01","Short film 09","Short film 13","Short film 08","Short film 15","Short film 18","Short film 11","Short film 16","Short film 01","Short film 14","Short film 17","Short film 19","Short film 20"]);
 const morePanel = document.querySelector('#view-more details');
 for (const link of document.querySelectorAll('.more-link')) {
   link.addEventListener('click', () => { morePanel.open = true; });
