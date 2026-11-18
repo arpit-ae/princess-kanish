@@ -12,13 +12,34 @@
 
 .collection{max-width:1320px;margin:auto}.collection>p:not(.eyebrow){max-width:38em;line-height:1.7}.album{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(12px,2vw,26px);align-items:start}.album figure{grid-column:span 4}.album figure:nth-child(6n+1),.album figure:nth-child(6n+5){grid-column:span 8}.album figure:nth-child(6n+3),.album figure:nth-child(6n+4){grid-column:span 6}.album figure:nth-child(6n+1) img,.album figure:nth-child(6n+5) img{aspect-ratio:16/10}.photo-trigger{display:block;width:100%;padding:0;border:0;border-radius:14px;background:#4d304a;overflow:hidden;cursor:zoom-in}.photo-trigger:hover img{transform:scale(1.035)}.photo-trigger img{transition:transform .35s}.album figcaption,.screenings figcaption{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700}.cinema{background:#25172b}.screenings{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:18px}.screenings figure{margin:0;padding:9px 9px 14px;background:#f8d9ec0e;border:1px solid var(--line);border-radius:15px}.screenings video{display:block;width:100%;aspect-ratio:4/5;object-fit:contain;background:#100a15;border-radius:9px}.screenings figcaption{padding:10px 6px 0;color:var(--rose)}.lightbox{width:min(920px,95vw);padding:9px;border:1px solid var(--line);border-radius:16px;background:#25172b;color:var(--cream);text-align:center}.lightbox::backdrop{background:#130b17ea}.lightbox img{display:block;width:100%;max-height:76svh;object-fit:contain}.lightbox .controls{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:10px;flex-wrap:wrap}.lightbox .pill{padding:8px 14px}.subtitle{max-width:38em;line-height:1.7;margin-bottom:40px}.photo-hero{width:87%;height:85%;object-fit:cover;object-position:50% 35%;border-radius:50% 50% 7px 7px;filter:saturate(.91);box-shadow:0 0 72px #df8ab662}.ornament.has-photo .orbit-label{bottom:1.9%}
 @media(max-width:640px){.album figure{grid-column:span 6!important}.album figure:nth-child(5n+1){grid-column:span 12!important}.album figure img{aspect-ratio:4/5!important}.album figure:nth-child(5n+1) img{aspect-ratio:5/4!important}}
+
+.hero .photo-hero,.album img{filter:saturate(.92) contrast(1.06) sepia(.055)}
+.plates{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(18px,5vw,72px);align-items:center;background:#281525}
+.plates h2,.featured h2{font:500 clamp(48px,7vw,106px)/.86 var(--serif);letter-spacing:-.05em;margin:20px 0}
+.plates h2 em,.featured h2 em{color:var(--rose)}
+.plates p:not(.eyebrow),.featured p:not(.eyebrow){color:#eed2dc;line-height:1.7;max-width:35ch}
+.plates-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;transform:rotate(-3deg);padding:18px}
+.plates-grid img{width:100%;height:clamp(120px,23vw,330px);object-fit:cover;border:5px solid #f6e4d0;box-shadow:0 16px 44px #0007;filter:saturate(.9) contrast(1.04)}
+.plates-grid img:nth-child(2){transform:translateY(16px) rotate(6deg)}
+.plates-grid img:nth-child(3){transform:translateX(7%) rotate(4deg)}
+.plates-grid img:nth-child(4){transform:translate(4%,12%) rotate(-5deg)}
+.featured{background:radial-gradient(ellipse at 78% 40%,#542839,#1d111f 68%);display:grid;gap:clamp(24px,6vw,100px);align-items:center;grid-template-columns:1fr 1fr}
+.featured video{display:block;width:100%;max-height:520px;background:#0d090d;border-radius:18px;object-fit:contain;border:1px solid var(--line)}
+.screenings video{filter:saturate(.94) contrast(1.05);object-fit:contain}
+.album figure:nth-child(7n+1){grid-column:span 2}
+.album figure:nth-child(7n+1) img{object-position:center 42%}
+.album figure:nth-child(7n+1) button{width:100%}
+.album figure:nth-child(7n+1) img{width:100%}
+@media(max-width:650px){.plates,.featured{grid-template-columns:1fr}.plates-grid{max-width:430px}.album figure:nth-child(7n+1){grid-column:auto}}
 </style></head>
-<body id="top"><nav class="nav" aria-label="Main navigation"><a class="brand" href="#top"><span>✦</span> Kanish</a><div class="nav-links"><a href="#letter">The letter</a><a href="#memories">Photos</a><a href="#films">Films</a></div></nav>
+<body id="top"><nav class="nav" aria-label="Main navigation"><a class="brand" href="#top"><span>✦</span> Kanish</a><div class="nav-links"><a href="#letter">The letter</a><a href="#memories">Photos</a><a href="#films">Films</a><a href="#wishes">Wishes</a></div></nav>
 <main>
-<header class="hero"><div class="hero-copy"><p class="eyebrow"><time datetime="2026-11-18">18 November 2026</time> &nbsp; ✦ &nbsp; For you</p><h1>Happy <em>Princess Day.</em></h1><p>A photo album, a room full of little films, and a letter for Princess Day.</p><a class="pill" href="#letter">Open your letter <span aria-hidden="true">↘</span></a></div><div class="ornament" aria-hidden="true"><div class="frame"></div><div class="orb"><span class="crown">♕</span></div><span class="spark s1">✦</span><span class="spark s2">✧</span><span class="spark s3">✦</span><span class="spark s4">✧</span><span class="orbit-label">The sky is yours</span></div></header>
+<header class="hero"><div class="hero-copy"><p class="eyebrow"><time datetime="2026-11-18">18 November 2026</time> &nbsp; ✦ &nbsp; For you</p><h1>Happy <em>Princess Day.</em></h1><p>Some memories belong in a little world of their own. This one is yours.</p><a class="pill" href="#letter">Open your letter <span aria-hidden="true">↘</span></a></div><div class="ornament" aria-hidden="true"><div class="frame"></div><div class="orb"><span class="crown">♕</span></div><span class="spark s1">✦</span><span class="spark s2">✧</span><span class="spark s3">✦</span><span class="spark s4">✧</span><span class="orbit-label">The sky is yours</span></div></header>
 <div class="ribbon">✧ &nbsp; A day to feel celebrated &nbsp; ✧</div>
 <section class="section note" id="letter"><div><p class="eyebrow">A letter for you</p><h2>Dear <em>Princess,</em></h2></div><div class="letter"><p>I hope today brings you the kind of happiness that sneaks up on you in the middle of an ordinary moment.</p><p>May there be a song you want to play twice, a reason to laugh until your cheeks hurt, and a moment just for yourself.</p><p>Happy Princess Day. I hope you feel celebrated today.</p></div></section>
+<section class="section plates" aria-labelledby="keepsakes"><div><p class="eyebrow">The keepsake</p><h2 id="keepsakes">The little things <em>stay.</em></h2><p>There’s something about a photograph that makes time slow down. I wanted these moments to have somewhere to live.</p><a class="pill" href="#memories">Turn to the album <span aria-hidden="true">↘</span></a></div><div class="plates-grid" aria-hidden="true"><img src="./media/photo-05.webp" alt="" loading="lazy" decoding="async"><img src="./media/photo-08.webp" alt="" loading="lazy" decoding="async"><img src="./media/photo-13.webp" alt="" loading="lazy" decoding="async"><img src="./media/photo-17.webp" alt="" loading="lazy" decoding="async"></div></section>
 <section class="section media" id="memories"><div class="collection"><p class="eyebrow">The photo album</p><h2>In your own frames.</h2><p class="subtitle">Open any photograph to see it in full.</p><div class="album"></div></div></section>
+<section class="section featured" aria-labelledby="curtain"><div><p class="eyebrow">The curtain rises</p><h2 id="curtain">A moment <em>in motion.</em></h2><p>Take your time here. The screening room is open whenever you want to come back.</p><a class="pill" href="#films">Browse all 21 films <span aria-hidden="true">↘</span></a></div><video controls playsinline preload="none" poster="./media/film-01.webp" src="./media/film-01.mp4" aria-label="Opening film"></video></section>
 <section class="section cinema" id="films"><div class="collection"><p class="eyebrow">The screening room</p><h2>Little films, <em>big feelings.</em></h2><p class="subtitle">Choose a scene and press play.</p><div class="screenings"></div></div></section>
 <section class="section wishes" id="wishes"><header><p class="eyebrow">Pick a star to reveal a wish</p><h2>Three wishes <em>for you.</em></h2></header><div class="cards">
 <button class="card" type="button" aria-expanded="false" aria-controls="wish-one"><span class="symbol" aria-hidden="true">✦</span><strong>Joy</strong><small>Reveal wish</small><span class="wish-text" id="wish-one" hidden>May something small make you laugh out loud today.</span></button>
@@ -120,4 +141,7 @@ for (const item of films) {
   document.querySelector('.screenings').append(figure);
 }
 
+document.querySelector('.featured video').addEventListener('play', event => {
+  for (const other of document.querySelectorAll('.screenings video')) other.pause();
+});
 </script></body></html>
