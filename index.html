@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><meta name="theme-color" content="#170e1d"><title>Happy Princess Day | Kanish</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@400;500;600;700&display=swap');
+:root{--ink:#170e1d;--cream:#fff4e4;--rose:#fbb9ca;--gold:#f5d499;--line:#ffdeae49;--serif:"Cormorant Garamond",Georgia,serif}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--ink);color:var(--cream);font-family:"DM Sans",sans-serif}a{color:inherit}button{font:inherit}button,a{-webkit-tap-highlight-color:transparent}button:focus-visible,a:focus-visible{outline:2px solid var(--gold);outline-offset:5px}.nav{max-width:1450px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:24px clamp(20px,5vw,76px);border-bottom:1px solid var(--line);position:relative;z-index:1}.brand{font:600 24px var(--serif);text-decoration:none}.brand span{color:var(--gold)}.nav-links{display:flex;gap:clamp(14px,4vw,48px);font-size:12px}.nav-links a{text-decoration:none}.nav-links a:hover{color:var(--rose)}
+.hero{position:relative;isolation:isolate;min-height: min(780px, calc(100svh - 78px));display:grid;grid-template-columns:1fr .9fr;align-items:center;gap:2rem;padding:clamp(48px,8vw,120px) clamp(24px,8vw,132px);overflow:hidden;background:radial-gradient(ellipse at 78% 46%,#703b58 0%,#3c233d 33%,#170e1d 70%)}.hero-copy{position:relative;z-index:1}.eyebrow{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);font-weight:700}.hero h1{font:500 clamp(76px,11vw,180px)/.74 var(--serif);letter-spacing:-.065em;margin:42px 0 30px}.hero h1 em{display:block;color:var(--rose);font-weight:500;margin-left:.28em}.hero p:not(.eyebrow){max-width:28em;color:#f6dce3;line-height:1.7}.pill{display:inline-flex;align-items:center;gap:19px;background:var(--cream);color:#291625;border:1px solid transparent;border-radius:50px;padding:13px 22px;font-weight:700;font-size:13px;text-decoration:none;cursor:pointer;transition:transform .2s,background .2s}.pill:hover{transform:translateY(-3px);background:var(--rose)}.hero .pill{margin-top:13px}
+.ornament{width:min(100%,480px);aspect-ratio:4/5;justify-self:center;position:relative;display:grid;place-items:center;isolation:isolate}.frame,.frame:after{position:absolute;inset:0;content:"";border:1px solid var(--line);border-radius:50% 50% 12px 12px}.frame:after{inset:11px}.orb{width:75%;aspect-ratio:1;border-radius:50%;box-shadow:0 0 85px #ffafbb37,inset -20px -25px 80px #6f324b;background:radial-gradient(circle at 39% 35%,#fff3c9,#edabac 36%,#9a4c6d 68%,#40203d 96%);display:grid;place-items:center;position:relative}.orb:after{content:"";position:absolute;width:128%;height:45%;border:1px solid #f9d49f9e;border-radius:50%;transform:rotate(-24deg);pointer-events:none}.crown{position:relative;font-size:clamp(95px,16vw,235px);line-height:1;color:#fff1d1;text-shadow:0 7px 21px #6f294d;transform:translateY(-5%);z-index:1}.orbit-label{position:absolute;bottom:7%;color:var(--gold);font-size:10px;letter-spacing:.23em;text-transform:uppercase}.spark{position:absolute;color:#ffdfb2;font-size:clamp(17px,3vw,44px);animation:glow 3s ease-in-out infinite alternate}.s1{left:9%;top:24%}.s2{right:10%;top:17%;animation-delay:.8s}.s3{right:5%;bottom:23%;animation-delay:1.4s}.s4{left:20%;bottom:18%;animation-delay:1s}@keyframes glow{from{opacity:.35;transform:scale(.85)}to{opacity:1;transform:scale(1.15)}}
+.ribbon{background:#efb2c5;color:#332038;text-align:center;font:600 clamp(16px,3vw,28px) var(--serif);padding:13px 20px;letter-spacing:.12em}.section{padding:clamp(65px,10vw,145px) clamp(24px,8vw,132px)}.section h2{font:500 clamp(52px,8vw,112px)/.85 var(--serif);letter-spacing:-.04em;margin:20px 0 28px}.section h2 em{color:var(--rose);font-weight:500}.note{background:#f8eadb;color:#3d2639;display:grid;grid-template-columns:.83fr 1.17fr;gap:clamp(26px,7vw,110px);align-items:center}.note .eyebrow{color:#744260}.note h2 em{color:#a0496b}.letter{padding:clamp(22px,5vw,60px);border:1px solid #a86d845d;background:#fff5e9;box-shadow:9px 9px #e9c9c8}.letter p{font:600 clamp(24px,3vw,40px)/1.2 var(--serif);margin:0 0 .7em}.letter p:last-child{margin-bottom:0;font-style:italic;color:#924368}
+.wishes{background:radial-gradient(ellipse at top,#43243e,#1e1227 65%)}.wishes header{text-align:center;margin-bottom:48px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1200px;margin:auto}.card{min-height:245px;text-align:left;display:flex;flex-direction:column;justify-content:space-between;gap:18px;border:1px solid var(--line);border-radius:150px 150px 12px 12px;background:#f9b9cb0b;color:var(--cream);padding:52px clamp(20px,3vw,46px) 28px;cursor:pointer}.card:hover,.card[aria-expanded=true]{background:#f9b9cb1f}.card strong{font:600 clamp(30px,4vw,47px)/.9 var(--serif)}.card .symbol{font:38px var(--serif);color:var(--gold);text-align:center}.card small{color:var(--rose);line-height:1.5}.card .wish-text{line-height:1.45;color:#ffe0ea}
+.finale{text-align:center;background:radial-gradient(ellipse at 50% 54%,#613a57,#211226 70%);border-top:1px solid var(--line);position:relative}.finale p:not(.eyebrow){margin:0 auto 24px;max-width:36em;line-height:1.7}.finale .pill{position:relative;z-index:2}.finale output{display:block;min-height:1.6em;color:var(--gold);margin-top:14px}.media{background:#f8eadb;color:#35243b}.media .eyebrow{color:#744260}.media-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:18px}.media figure{margin:0}.media img,.media video{width:100%;display:block;aspect-ratio:4/5;object-fit:cover;border-radius:12px;background:#332038}.media video{object-fit:contain}.media figcaption{margin-top:8px}.footer{display:flex;justify-content:space-between;padding:25px clamp(24px,8vw,132px);font-size:12px;border-top:1px solid var(--line);gap:10px}.confetti{pointer-events:none;position:fixed;z-index:5;top:-20px;width:8px;height:13px;border-radius:2px;animation:fall var(--time) ease-in forwards}@keyframes fall{to{transform:translate(var(--drift),105vh) rotate(680deg);opacity:.3}}[hidden]{display:none!important}
+@media(max-width:720px){.hero{grid-template-columns:1fr;gap:30px;padding-top:45px}.hero h1{margin-top:30px}.ornament{width:min(76vw,340px)}.note,.cards{grid-template-columns:1fr}.card{min-height:150px;border-radius:60px 60px 12px 12px;padding:24px}.card .symbol{text-align:left}.footer{flex-wrap:wrap}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style></head>
+<body id="top"><nav class="nav" aria-label="Main navigation"><a class="brand" href="#top"><span>✦</span> Kanish</a><div class="nav-links"><a href="#letter">The letter</a><a href="#wishes">Make a wish</a></div></nav>
+<main>
+<header class="hero"><div class="hero-copy"><p class="eyebrow"><time datetime="2026-11-18">18 November 2026</time> &nbsp; ✦ &nbsp; For you</p><h1>Happy <em>Princess Day.</em></h1><p>A little night sky, a few wishes, and a letter to make today feel like yours.</p><a class="pill" href="#letter">Open your letter <span aria-hidden="true">↘</span></a></div><div class="ornament" aria-hidden="true"><div class="frame"></div><div class="orb"><span class="crown">♕</span></div><span class="spark s1">✦</span><span class="spark s2">✧</span><span class="spark s3">✦</span><span class="spark s4">✧</span><span class="orbit-label">The sky is yours</span></div></header>
+<div class="ribbon">✧ &nbsp; A day to feel celebrated &nbsp; ✧</div>
+<section class="section note" id="letter"><div><p class="eyebrow">A letter for you</p><h2>Dear <em>Princess,</em></h2></div><div class="letter"><p>I hope today brings you the kind of happiness that sneaks up on you in the middle of an ordinary moment.</p><p>May there be a song you want to play twice, a reason to laugh until your cheeks hurt, and a moment just for yourself.</p><p>Happy Princess Day. I hope you feel celebrated today.</p></div></section>
+<section class="section media" id="memories" hidden><p class="eyebrow">The keepsakes</p><h2>In your own frames.</h2><div class="media-grid"></div></section>
+<section class="section wishes" id="wishes"><header><p class="eyebrow">Pick a star to reveal a wish</p><h2>Three wishes <em>for you.</em></h2></header><div class="cards">
+<button class="card" type="button" aria-expanded="false" aria-controls="wish-one"><span class="symbol" aria-hidden="true">✦</span><strong>Joy</strong><small>Reveal wish</small><span class="wish-text" id="wish-one" hidden>May something small make you laugh out loud today.</span></button>
+<button class="card" type="button" aria-expanded="false" aria-controls="wish-two"><span class="symbol" aria-hidden="true">☾</span><strong>Peace</strong><small>Reveal wish</small><span class="wish-text" id="wish-two" hidden>May you get a quiet hour to spend exactly as you like.</span></button>
+<button class="card" type="button" aria-expanded="false" aria-controls="wish-three"><span class="symbol" aria-hidden="true">✧</span><strong>Courage</strong><small>Reveal wish</small><span class="wish-text" id="wish-three" hidden>May one thing you’ve been putting off feel a little easier to begin.</span></button>
+</div></section>
+<section class="section finale"><p class="eyebrow">One last wish</p><h2>Make it <em>yours.</em></h2><p>Think of a wish. Keep it to yourself, then send a little confetti into the sky.</p><button class="pill" id="celebrate" type="button">Send my wish <span aria-hidden="true">✦</span></button><output id="wish-status" aria-live="polite"></output></section>
+</main><footer class="footer"><span>Kanish · Princess Day</span><a href="#top">Back to the stars ↑</a></footer>
+<script type="application/json" id="media-data">[]</script>
+<script>
+for (const card of document.querySelectorAll('.card')) {
+  card.addEventListener('click', () => {
+    const message = document.getElementById(card.getAttribute('aria-controls'));
+    message.hidden = !message.hidden;
+    card.setAttribute('aria-expanded', String(!message.hidden));
+    card.querySelector('small').textContent = message.hidden ? 'Reveal wish' : 'Close wish';
+  });
+}
+const colors = ['#fbb9ca','#f5d499','#f8e6ff','#d69add'];
+document.getElementById('celebrate').addEventListener('click', () => {
+  document.getElementById('wish-status').textContent = 'Your wish is on its way. ✨';
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.querySelectorAll('.confetti').forEach(piece => piece.remove());
+  for (let i = 0; i < 64; i += 1) {
+    const piece = document.createElement('span');
+    piece.className = 'confetti';
+    piece.setAttribute('aria-hidden', 'true');
+    piece.style.left = Math.random() * 100 + 'vw';
+    piece.style.backgroundColor = colors[i % colors.length];
+    piece.style.setProperty('--time', 1.5 + Math.random() * 1.7 + 's');
+    piece.style.setProperty('--drift', (Math.random() - 0.5) * 34 + 'vw');
+    piece.addEventListener('animationend', () => piece.remove(), {once:true});
+    document.body.append(piece);
+  }
+});
+const memories = document.getElementById('memories');
+const media = JSON.parse(document.getElementById('media-data').textContent);
+for (const item of media) {
+  const figure = document.createElement('figure');
+  const video = item.type === 'video';
+  const element = document.createElement(video ? 'video' : 'img');
+  const caption = document.createElement('figcaption');
+  element.src = item.src;
+  caption.textContent = item.caption;
+  if (video) {
+    element.controls = true;
+    element.playsInline = true;
+    element.preload = 'metadata';
+    element.setAttribute('aria-label', item.caption);
+  } else {
+    element.loading = 'lazy';
+    element.alt = item.alt || item.caption;
+  }
+  figure.append(element, caption);
+  memories.querySelector('.media-grid').append(figure);
+}
+memories.hidden = media.length === 0;
+</script></body></html>
