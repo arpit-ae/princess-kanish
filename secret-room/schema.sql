@@ -5,6 +5,7 @@ create table kanish_secret.room (
   id boolean primary key default true check(id),
   questions jsonb,
   answers text,
+  answer_baseline text,
   attempts integer not null default 0,
   attempt_window timestamptz not null default now()
 );
@@ -19,14 +20,23 @@ alter table kanish_secret.room enable row level security;
 alter table kanish_secret.sessions enable row level security;
 alter table kanish_secret.messages enable row level security;
 
-create function public.kanish_secret_rpc(bridge text, action text, data jsonb)
-returns jsonb language plpgsql security definer set search_path = '' as $$
+CREATE FUNCTION public.kanish_secret_rpc(bridge text, action text, data jsonb)
+ RETURNS jsonb
+ LANGUAGE plpgsql
+ SECURITY DEFINER
+ SET search_path TO ''
+AS $function$
 declare
   room kanish_secret.room%rowtype;
   token_hash bytea;
 begin
   if pg_catalog.encode(pg_catalog.sha256(pg_catalog.convert_to(coalesce(bridge,''), 'UTF8')), 'hex') <> 'REPLACE_WITH_SHA256_OF_WORKER_BRIDGE_SECRET' then
     return '{"error":"Unavailable","status":403}';
+  end if;
+
+  if action = 'answer_baseline' then
+    select * into room from kanish_secret.room where id = true;
+    return jsonb_build_object('baseline', room.answer_baseline);
   end if;
 
   if action = 'questions' then
@@ -43,7 +53,7 @@ begin
       if jsonb_typeof(data->'questions') is distinct from 'array' or jsonb_array_length(data->'questions') is distinct from 3 then
         return '{"error":"Enter three questions.","status":400}';
       end if;
-      update kanish_secret.room set questions = data->'questions', answers = data->>'answers', attempts = 0, attempt_window = now() where id = true;
+      update kanish_secret.room set questions = data->'questions', answers = data->>'answers', answer_baseline = data->>'baseline', attempts = 0, attempt_window = now() where id = true;
       delete from kanish_secret.sessions where expires is not null;
     else
       if jsonb_array_length(room.questions) is distinct from 3 then
@@ -60,7 +70,8 @@ begin
         update kanish_secret.room set attempts = attempts + 1 where id = true;
         return '{"error":"One or more answers are incorrect.","status":401}';
       end if;
-      update kanish_secret.room set attempts = 0, attempt_window = now() where id = true;
+      update kanish_secret.room set attempts = 0, attempt_window = now(),
+        answer_baseline = coalesce(answer_baseline, data->>'baseline') where id = true;
     end if;
     delete from kanish_secret.sessions where expires <= now();
     insert into kanish_secret.sessions values (
@@ -101,6 +112,7 @@ begin
   end if;
   return '{"error":"Unknown action.","status":400}';
 end;
-$$;
+$function$
+;
 revoke all on function public.kanish_secret_rpc(text,text,jsonb) from public, authenticated;
 grant execute on function public.kanish_secret_rpc(text,text,jsonb) to anon;
