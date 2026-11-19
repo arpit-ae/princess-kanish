@@ -19,6 +19,35 @@ async function answerKey(answers,env){
   const key=await crypto.subtle.importKey("raw",encoder.encode(env.BRIDGE),{name:"HMAC",hash:"SHA-256"},false,["sign"]);
   return hex(await crypto.subtle.sign("HMAC",key,encoder.encode(JSON.stringify(answers.map(normalize)))));
 }
+function withinTolerance(expected, actual) {
+  const a = Array.from(expected), b = Array.from(actual);
+  const limit = Math.floor(a.length / 5);
+  if (expected === actual) return true;
+  if (!limit || Math.abs(a.length - b.length) > limit) return false;
+  let previous = Array.from({length:b.length+1}, (_, i) => i);
+  for (let i = 1; i <= a.length; i++) {
+    const current = [i];
+    for (let j = 1; j <= b.length; j++) {
+      current[j] = Math.min(previous[j]+1, current[j-1]+1, previous[j-1]+Number(a[i-1]!==b[j-1]));
+    }
+    previous = current;
+  }
+  return previous[b.length] <= limit;
+}
+async function baselineKey(env) {
+  const material = await crypto.subtle.digest("SHA-256", encoder.encode("kanish-answer-baseline:v1:" + env.BRIDGE));
+  return crypto.subtle.importKey("raw", material, "AES-GCM", false, ["encrypt","decrypt"]);
+}
+async function sealBaseline(values, env) {
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const encrypted = await crypto.subtle.encrypt({name:"AES-GCM",iv}, await baselineKey(env), encoder.encode(JSON.stringify(values)));
+  return hex(iv) + hex(encrypted);
+}
+async function openBaseline(sealed, env) {
+  const bytes = Uint8Array.from(sealed.match(/../g), part => parseInt(part,16));
+  const plain = await crypto.subtle.decrypt({name:"AES-GCM",iv:bytes.slice(0,12)}, await baselineKey(env), bytes.slice(12));
+  return JSON.parse(new TextDecoder().decode(plain));
+}
 async function rpc(action,data,env){
   const response=await fetch(env.SUPABASE_URL+"/rest/v1/rpc/kanish_secret_rpc",{
     method:"POST",headers:{apikey:env.SUPABASE_KEY,"Content-Type":"application/json"},
@@ -70,7 +99,26 @@ export default {async fetch(request,env){
         if(!validAnswers(input.questions))return fail("Enter all three questions.",400);
         data.questions=input.questions.map(q=>q.trim());
       }
-      data.answers=await answerKey(input.answers,env);
+      const submitted = input.answers.map(normalize);
+      data.answers = await answerKey(input.answers, env);
+      if (action === "setup") {
+        data.baseline = await sealBaseline(submitted, env);
+      } else {
+        const {baseline, error, status} = await rpc("answer_baseline", {}, env);
+        if (error) return fail(error, status);
+        if (baseline === null) {
+          data.baseline = await sealBaseline(submitted, env);
+        } else {
+          try {
+            const expected = await openBaseline(baseline, env);
+            if (expected.every((answer, i) => withinTolerance(answer, submitted[i]))) {
+              data.answers = await answerKey(expected, env);
+            }
+          } catch {
+            // Exact login remains available if the encrypted answers cannot be decoded.
+          }
+        }
+      }
       session=hex(crypto.getRandomValues(new Uint8Array(32)));
       data.token=session;
     }
