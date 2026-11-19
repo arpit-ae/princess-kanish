@@ -20,9 +20,12 @@ async function answerKey(answers,env){
   return hex(await crypto.subtle.sign("HMAC",key,encoder.encode(JSON.stringify(answers.map(normalize)))));
 }
 function withinTolerance(expected, actual) {
-  const a = Array.from(expected), b = Array.from(actual);
+  const compactExpected = expected.replace(/\s+/gu, "");
+  const compactActual = actual.replace(/\s+/gu, "");
+  if (compactExpected === compactActual) return true;
+
+  const a = Array.from(compactExpected), b = Array.from(compactActual);
   const limit = Math.floor(a.length / 5);
-  if (expected === actual) return true;
   if (!limit || Math.abs(a.length - b.length) > limit) return false;
   let previous = Array.from({length:b.length+1}, (_, i) => i);
   for (let i = 1; i <= a.length; i++) {
