@@ -31,18 +31,22 @@ begin
 
   if action = 'questions' then
     select * into room from kanish_secret.room;
-    return jsonb_build_object('questions', room.questions);
+    return jsonb_build_object('questions', case when jsonb_array_length(room.questions) = 3 then room.questions end, 'upgrade', coalesce(jsonb_array_length(room.questions) = 2, false));
   end if;
 
   if action in ('setup', 'unlock') then
     select * into room from kanish_secret.room for update;
     if action = 'setup' then
-      if room.questions is not null then
+      if jsonb_array_length(room.questions) = 3 then
         return '{"error":"Room already configured.","status":409}';
       end if;
-      update kanish_secret.room set questions = data->'questions', answers = data->>'answers' where id = true;
+      if jsonb_typeof(data->'questions') is distinct from 'array' or jsonb_array_length(data->'questions') is distinct from 3 then
+        return '{"error":"Enter three questions.","status":400}';
+      end if;
+      update kanish_secret.room set questions = data->'questions', answers = data->>'answers', attempts = 0, attempt_window = now() where id = true;
+      delete from kanish_secret.sessions where expires is not null;
     else
-      if room.questions is null then
+      if jsonb_array_length(room.questions) is distinct from 3 then
         return '{"error":"Room setup pending.","status":409}';
       end if;
       if room.attempt_window <= now() - interval '10 minutes' then
@@ -65,6 +69,9 @@ begin
     return '{"ok":true}';
   end if;
 
+  if not exists (select 1 from kanish_secret.room where id = true and jsonb_array_length(questions) = 3) then
+    return '{"error":"Unlock the room first.","status":401}';
+  end if;
   token_hash := sha256(convert_to(data->>'token','UTF8'));
   if not exists (select 1 from kanish_secret.sessions where token = token_hash and expires > now()) then
     return '{"error":"Unlock the room first.","status":401}';
