@@ -40,23 +40,23 @@ begin
       if room.questions is not null then
         return '{"error":"Room already configured.","status":409}';
       end if;
-      update kanish_secret.room set questions = data->'questions', answers = data->>'answers';
+      update kanish_secret.room set questions = data->'questions', answers = data->>'answers' where id = true;
     else
       if room.questions is null then
         return '{"error":"Room setup pending.","status":409}';
       end if;
       if room.attempt_window <= now() - interval '10 minutes' then
-        update kanish_secret.room set attempts = 0, attempt_window = now();
+        update kanish_secret.room set attempts = 0, attempt_window = now() where id = true;
         room.attempts := 0;
       end if;
       if room.attempts >= 10 then
         return '{"error":"Too many attempts. Try again in 10 minutes.","status":429}';
       end if;
       if room.answers is distinct from (data->>'answers') then
-        update kanish_secret.room set attempts = attempts + 1;
+        update kanish_secret.room set attempts = attempts + 1 where id = true;
         return '{"error":"One or more answers are incorrect.","status":401}';
       end if;
-      update kanish_secret.room set attempts = 0, attempt_window = now();
+      update kanish_secret.room set attempts = 0, attempt_window = now() where id = true;
     end if;
     delete from kanish_secret.sessions where expires <= now();
     insert into kanish_secret.sessions values (
